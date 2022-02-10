@@ -1,14 +1,15 @@
 import { createHash } from 'crypto';
 import { baseModelResolver } from '../base/base.resolver';
-import { Avocado } from './avocado.model';
+// import { Avocado } from './avocado.model';
+import { Avocado } from '@prisma/client';
 
 const avos: Avocado[] = [
   {
     createdAt: new Date(),
-    updatedAt: undefined,
-    deletedAt: undefined,
+    updatedAt: new Date(),
+    deletedAt: null,
     name: 'Pinkerton Avocado',
-    id: 'fpr72m9k',
+    id: 0,
     sku: 'B4HZ42TM',
     price: 1.27,
     image: '/images/pinkerton.jpg',
@@ -53,14 +54,14 @@ export function createAvo(
 ): Avocado {
   const currentLength = avos.length;
   const newAvo: Avocado = {
-    id: String(currentLength + 1),
+    id: currentLength + 1,
     sku: createHash('sha256')
       .update(data.name, 'utf8')
       .digest('base64')
       .slice(-6),
     createdAt: new Date(),
     updatedAt: new Date(),
-    deletedAt: undefined,
+    deletedAt: null,
     name: data.name,
     price: data.price,
     image: data.image,
