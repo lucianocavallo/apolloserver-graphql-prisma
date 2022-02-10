@@ -2,7 +2,7 @@ scalar DateTime
 
 type Query {
   avos: [Avocado]!
-  # avo(id: ID!): Avocado
+  avo(id: ID!): Avocado
 }
 
 type Mutation {
