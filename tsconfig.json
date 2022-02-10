@@ -12,12 +12,15 @@
     "importHelpers": true,
     "preserveConstEnums": true,
     "target": "es2015",
-    "module": "esnext",
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {},
+    "outDir": "./dist",
+    "module": "commonjs",
+    "types": ["node"]
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp", "**/*.spec.ts"],
+  "include": ["**/*.ts"]
 }
