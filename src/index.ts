@@ -23,7 +23,7 @@ const port = process.env.PORT || 3001;
       return { orm, user: req.user };
     },
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-    // introspection: false,
+    introspection: true,
   });
 
   // More required logic for integrating with Express
