@@ -5,6 +5,10 @@
   "main": "index.js",
   "description": "Saga de GraphQL Fullstack de Platzi",
   "scripts": {
+    "build": "prisma generate && yarn clean && tsc --build && yarn copyfiles",
+    "clean": "rimraf ./dist",
+    "start": "node dist/index.js",
+    "copyfiles": "copyfiles -f src/schema.graphql dist && copyfiles public/* dist",
     "dev": "nodemon src/index.ts",
     "test": "jest src"
   },
@@ -22,12 +26,14 @@
     "apollo-server-express": "^3.6.3",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
+    "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "graphql": "^15.8.0",
     "jose": "^4.5.0",
     "nodemon": "^2.0.15",
     "prompt": "^1.2.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.5.0"
   },
   "devDependencies": {

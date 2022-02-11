@@ -35,5 +35,5 @@ const orm = new PrismaClient();
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: 3001 }, resolve)
   );
-  console.log(`🚀 Server ready at http://localhost: 3001${server.graphqlPath}`);
+  console.log(`🚀 Server ready at http://localhost:3001${server.graphqlPath}`);
 })();
