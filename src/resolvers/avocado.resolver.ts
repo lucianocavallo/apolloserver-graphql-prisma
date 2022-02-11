@@ -1,7 +1,9 @@
 import type { Attributes, Avocado, PrismaClient, Prisma } from '@prisma/client';
+import { AuthenticationError } from 'apollo-server-express';
 
 type ResolverContext = {
   orm: PrismaClient;
+  user: Express.User | undefined;
 };
 
 export function findAll(
@@ -56,10 +58,12 @@ export const resolver: Record<
 export function createAvo(
   parent: unknown,
   { data }: { data: Pick<Avocado, 'name' | 'price' | 'image'> & Attributes },
-  { orm }: { orm: PrismaClient }
+  { orm, user }: ResolverContext
 ): Promise<Avocado> {
+  if (user === undefined) {
+    throw new AuthenticationError('Unauthenticated request');
+  }
   const { name, price, image, ...attributes } = data;
-
   return orm.avocado.create({
     data: {
       name,
